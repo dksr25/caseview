@@ -47,11 +47,11 @@
 
 
 
-// var objLink = document.createElement("link"); 
-// objLink.rel = "stylesheet"; 
-// objLink.type = "text/css"; 
-// objLink.href = "../css/caseview.css"; 
-// document.head.appendChild(objLink);
+var objLink = document.createElement("link"); 
+objLink.rel = "stylesheet"; 
+objLink.type = "text/css"; 
+objLink.href = "https://dksr25.github.io/caseview/css/style.css"; 
+document.head.appendChild(objLink);
 
 var fontLink = document.createElement("link"); 
 fontLink.rel = "stylesheet"; 
