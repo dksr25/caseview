@@ -1,7 +1,8 @@
 var objLink = document.createElement("link"); 
 objLink.rel = "stylesheet"; 
 objLink.type = "text/css"; 
-objLink.href = "https://dksr25.github.io/caseview/css/style.css"; 
+objLink.href = "https://dksr25.github.io/caseview/css/style.css";
+// objLink.href = "css/style.css"; 
 document.head.appendChild(objLink);
 
 var fontLink = document.createElement("link"); 
@@ -38,5 +39,8 @@ $(document).ready(function(){
       },1100);  
     }
     $(this).parent().toggleClass('open');
+  });
+  $('.caseview_lst').find('button').on('click',function(){
+    $(this).addClass('on').parent().siblings().find('button').removeClass('on');
   });
 })
