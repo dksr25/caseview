@@ -5,12 +5,6 @@ objLink.href = "https://dksr25.github.io/caseview/css/style.css";
 // objLink.href = "css/style.css"; 
 document.head.appendChild(objLink);
 
-var fontLink = document.createElement("link"); 
-fontLink.rel = "stylesheet"; 
-fontLink.type = "text/css"; 
-fontLink.href = "https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap"; 
-document.head.appendChild(fontLink);
-
 (function ( $ ) {
   caseLength = $('.caseview_lst > li').length;
   $.fn.caseOpen = function( options ) {
