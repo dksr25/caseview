@@ -30,7 +30,7 @@ $(document).ready(function(){
   $('.caseview_toggle').click(function(){
     $('.caseview_lst li').css({"transition":"all 0.5s"});
     if($(this).parent().hasClass('open')){
-      $('.caseview_lst').css({"max-height":"unset","overflow-y":"hidden"});
+      $('.caseview_lst').css({"max-height":"0","overflow-y":"hidden"});
     }
     else {
       $('.caseview_lst').css({"max-height":maxHeight})
