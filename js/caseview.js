@@ -6,16 +6,20 @@ objLink.href = "https://dksr25.github.io/caseview/css/style.css";
 document.head.appendChild(objLink);
 
 (function ( $ ) {
-  caseLength = $('.caseview_lst > li').length;
   $.fn.caseOpen = function( options ) {
     var settings = $.extend({
         zIndex: "1000"
     }, options );
     $('#caseview').css({"z-index":settings.zIndex});
-    for (var i=1;i<=caseLength;i++){
-      eval("var newCase"+i+"=settings.case"+i);
-      eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',settings.case"+i+")"); 
+    for (var i=1;i<=settings.caseLength;i++){
+      var str = '<li><button type="button"></button></li>';
+      $('.caseview_lst').append(str);
+      eval("var newCase"+i+"=settings.case"+i+".split(',')");
+      eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',newCase"+i+"[1]).text(newCase"+i+"[0])"); 
     }
+    $('.caseview_lst').find('button').on('click',function(){
+      $(this).addClass('on').parent().siblings().find('button').removeClass('on');
+    });
     return this;
   };
 }( jQuery ));
@@ -33,8 +37,5 @@ $(document).ready(function(){
       },1100);  
     }
     $(this).parent().toggleClass('open');
-  });
-  $('.caseview_lst').find('button').on('click',function(){
-    $(this).addClass('on').parent().siblings().find('button').removeClass('on');
   });
 })
