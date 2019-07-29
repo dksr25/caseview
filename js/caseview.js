@@ -14,7 +14,7 @@ document.head.appendChild(objLink);
     for (var i=1;i<=settings.caseLength;i++){
       var str = '<li><button type="button"></button></li>';
       $('.caseview_lst').append(str);
-      eval("var newCase"+i+"=settings.case"+i+".split(',')");
+      eval("var newCase"+i+"=settings.case"+i+".split('?')");
       eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',newCase"+i+"[1]).text(newCase"+i+"[0])"); 
     }
     $('.caseview_lst').find('button').on('click',function(){
