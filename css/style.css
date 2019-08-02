@@ -78,14 +78,14 @@
   box-shadow: 0 0 8px rgba(255,255,255,1);
 }
 
-.caseview_lst li button > span {
+.caseview_lst li button > .txt {
   display: block;
   overflow: hidden;
   font-size: 0;
   line-height: 0;
 }
 
-.caseview_lst li button > span > .txt {
+.caseview_lst li button > .txt > span {
   display: inline-block;
   vertical-align: top;
   font-family: 'Song Myung', serif;
@@ -96,11 +96,11 @@
   white-space: nowrap;
 }
 
-.caseview_lst li button.on > span > .txt {
+.caseview_lst li button.on > .txt > span {
   color: #fff;
 }
 
-.caseview_lst li button > span > .txt.long {
+.caseview_lst li button > .txt > .long {
   animation-duration: var(--overduration);
   -webkit-animation-duration: var(--overduration);
   -moz-animation-duration: var(--overduration);

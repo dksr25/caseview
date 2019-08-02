@@ -12,10 +12,10 @@ document.head.appendChild(objLink);
     }, options );
     $('#caseview').css({"z-index":settings.zIndex});
     for (var i=1;i<=settings.caseLength;i++){
-      var str = '<li><button type="button"><span><span class="txt" /></span></button></li>';
+      var str = '<li><button type="button"><span class="txt"><span /></span></button></li>';
       $('.caseview_lst').append(str);
       eval("var newCase"+i+"=settings.case"+i+".split('?')");
-      eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',newCase"+i+"[1]).find('.txt').text(newCase"+i+"[0])"); 
+      eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',newCase"+i+"[1]).find('.txt span').text(newCase"+i+"[0])"); 
     }
     $('.caseview_lst').find('button').on('click',function(){
       $(this).addClass('on').parent().siblings().find('button').removeClass('on');
@@ -23,11 +23,11 @@ document.head.appendChild(objLink);
     window.onload = function(){
       setTimeout(function(){
         for (var n=1;n<=settings.caseLength;n++){
-          var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt').prop('scrollWidth');
+          var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt span').prop('scrollWidth');
           var over = 118 - textLength;
           var overDu = -Math.round(over/28)+'s';
           if(textLength > 128) {
-            $('.caseview_lst li:nth-child('+n+')').find('.txt').addClass('long').css({'--overflow':over,'--overduration':overDu});
+            $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu});
           }
         }
       },100)
@@ -78,7 +78,6 @@ $(document).ready(function(){
       }
     }
   });
-  $('.caseview_lst li:first-child span').animate({scrollLeft:100});
   function scrollTest(mH, oH){
     if(mH < oH) {
       $('.caseview_lst').addClass('scrolling');
