@@ -23,15 +23,18 @@
 .caseview_lst:after {
   position: absolute;
   right: 5px;
-  bottom: -1px;
+  bottom: 0;
   left: 5px;
   height: 0;
-  background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-  background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
-  background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  /*background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);*/
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.6) 100%);
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.6) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.6) 100%);
   transition: all 0.2s;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
+  /*filter: blur(5px);
+  -webkit-filter: blur(5px);*/
   pointer-events: none;
   content: '';
 }
@@ -41,7 +44,7 @@
 }
 
 .caseview_lst.scrolling:after {
-  height: 50px;
+  height: 10px;
 }
 
 .open .caseview_lst {
@@ -78,30 +81,46 @@
 .caseview_lst li button > span {
   display: block;
   overflow: hidden;
-  overflow-x: scroll;
+  font-size: 0;
+  line-height: 0;
+}
+
+.caseview_lst li button > span > .txt {
+  display: inline-block;
+  vertical-align: top;
   font-family: 'Song Myung', serif;
   font-size: 13px;
   line-height: 14px;
   font-weight: 600;
   color: #333;
   white-space: nowrap;
-  pointer-events: none;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
 }
 
-.caseview_lst li button > span::-webkit-scrollbar {
-  display: none;
-}
-
-.caseview_lst li button.on > span {
+.caseview_lst li button.on > span > .txt {
   color: #fff;
+}
+
+.caseview_lst li button > span > .txt.long {
+  animation-duration: var(--overduration);
+  -webkit-animation-duration: var(--overduration);
+  -moz-animation-duration: var(--overduration);
+  animation-name: swing;
+  -webkit-animation-name: swing;
+  -moz-animation-name: swing;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-direction: alternate;
+  -webkit-animation-direction: alternate;
+  -moz-animation-direction: alternate;
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
 }
 
 .caseview_lst li + li {
   margin-top: 10px;
 }
-
 
 .caseview_toggle {
   display: block; 
@@ -140,4 +159,58 @@
   transform: translate(-50%,-50%);
   box-shadow: 0 0 5px rgba(0,0,0,.2);
   content: '';
+}
+
+@keyframes swing {
+  from {
+    transform: translateX(8px);
+  }
+
+  15% {
+    transform: translateX(8px);
+  }
+
+  85% {
+    transform: translateX(var(--overflow));
+  }
+  
+  to {
+    transform: translateX(var(--overflow));
+ }
+}
+
+@-webkit-keyframes swing {
+  from {
+    -webkit-transform: translateX(8px);
+  }
+
+  15% {
+    -webkit-transform: translateX(8px);
+  }
+
+  85% {
+    -webkit-transform: translateX(var(--overflow));
+  }
+  
+  to {
+    -webkit-transform: translateX(var(--overflow));
+ }
+}
+
+@-moz-keyframes swing {
+  from {
+    transform: translateX(8px);
+  }
+
+  15% {
+    transform: translateX(8px);
+  }
+
+  85% {
+    transform: translateX(var(--overflow));
+  }
+  
+  to {
+    transform: translateX(var(--overflow));
+ }
 }

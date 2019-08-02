@@ -12,14 +12,26 @@ document.head.appendChild(objLink);
     }, options );
     $('#caseview').css({"z-index":settings.zIndex});
     for (var i=1;i<=settings.caseLength;i++){
-      var str = '<li><button type="button"><span /></button></li>';
+      var str = '<li><button type="button"><span><span class="txt" /></span></button></li>';
       $('.caseview_lst').append(str);
       eval("var newCase"+i+"=settings.case"+i+".split('?')");
-      eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',newCase"+i+"[1]).find('span').text(newCase"+i+"[0])"); 
+      eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',newCase"+i+"[1]).find('.txt').text(newCase"+i+"[0])"); 
     }
     $('.caseview_lst').find('button').on('click',function(){
       $(this).addClass('on').parent().siblings().find('button').removeClass('on');
     });
+    window.onload = function(){
+      setTimeout(function(){
+        for (var n=1;n<=settings.caseLength;n++){
+          var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt').prop('scrollWidth');
+          var over = 118 - textLength;
+          var overDu = -Math.round(over/28)+'s';
+          if(textLength > 128) {
+            $('.caseview_lst li:nth-child('+n+')').find('.txt').addClass('long').css({'--overflow':over,'--overduration':overDu});
+          }
+        }
+      },100)
+    }
     return this;
   };
 }( jQuery ));
