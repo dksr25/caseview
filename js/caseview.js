@@ -30,7 +30,7 @@ document.head.appendChild(objLink);
             $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu});
           }
         }
-      },100)
+      },200)
     }
     return this;
   };
