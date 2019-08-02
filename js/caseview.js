@@ -24,8 +24,8 @@ document.head.appendChild(objLink);
       setTimeout(function(){
         for (var n=1;n<=settings.caseLength;n++){
           var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt span').prop('scrollWidth');
-          var over = 118 - textLength;
-          var overDu = -Math.round(over/28)+'s';
+          var over = 140 - textLength;
+          var overDu = -(Math.round(over/28)-1)+'s';
           if(textLength > 128) {
             $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu});
           }
