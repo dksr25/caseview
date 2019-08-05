@@ -3,10 +3,7 @@
 ###  1.dom구조 세팅
 
 ~~~
-<div id="caseview" class="caseview">
-  <ul class="caseview_lst"></ul>
-  <a href="#" class="caseview_toggle"></a>
-</div>
+<div id="caseview" class="caseview"></div>
 ~~~
 
 다음과 같이 body가 닫히는 바로 위에 dom구조를 먼저 잡아주세요
@@ -14,10 +11,7 @@
 ### 2.script 호출
 
 ~~~
-<div>
-	...
-  <a href="#" class="caseview_toggle"></a>
-</div>
+<div id="caseview" class="caseview"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://dksr25.github.io/caseview/js/caseview.js"></script>
 ~~~

@@ -10,7 +10,9 @@ document.head.appendChild(objLink);
     var settings = $.extend({
         zIndex: "1000"
     }, options );
+    maxHeight = window.innerHeight - 220;
     $('#caseview').css({"z-index":settings.zIndex});
+    $('#caseview').append('<ul class="caseview_lst" /><a href="#" class="caseview_toggle" />');
     for (var i=1;i<=settings.caseLength;i++){
       var str = '<li><button type="button"><span class="txt"><span /></span></button></li>';
       $('.caseview_lst').append(str);
@@ -20,71 +22,72 @@ document.head.appendChild(objLink);
     $('.caseview_lst').find('button').on('click',function(){
       $(this).addClass('on').parent().siblings().find('button').removeClass('on');
     });
+    $('.caseview_toggle').click(function(){
+      $('.caseview_lst li').css({"transition":"all 0.5s"});
+      if($(this).parent().hasClass('open')){
+        $(this).parent().removeClass('open');
+        $('.caseview_lst').css({"max-height":"0","overflow-y":"hidden"});
+        $('.caseview_lst').removeClass('scrolling');
+        $('.caseview_lst').scrollTop(0);
+      }
+      else {
+        $(this).parent().addClass('open');
+        $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
+        setTimeout(function(){
+          overflowHeight = $('.caseview_lst').prop('scrollHeight') - 10;
+          scrollTest(maxHeight, overflowHeight);
+        },700)
+      }
+    });
+    $(window).resize(function(){
+      maxHeight = window.innerHeight - 220;
+      if($('#caseview').hasClass('open')) {
+        $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
+        setTimeout(function(){
+          overflowHeight = $('.caseview_lst').prop('scrollHeight') - 10;
+          scrollTest(maxHeight, overflowHeight);
+        },700)
+      }
+    });
+    $('.caseview_lst').scroll(function(){
+      innerST = $(this).scrollTop();
+      if(innerST > 0) {
+        $('.caseview_lst').removeClass('scrolling');
+      }
+      else {
+        if(!$(this).parent().hasClass('open')){
+          $('.caseview_lst').removeClass('scrolling');
+        }
+        else {
+          $('.caseview_lst').addClass('scrolling');
+        }
+      }
+    });
     window.onload = function(){
       setTimeout(function(){
         for (var n=1;n<=settings.caseLength;n++){
           var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt span').prop('scrollWidth');
           var over = 140 - textLength;
-          var overDu = -(Math.round(over/28)-1)+'s';
+          var overDu = -(Math.round(over/28)-1);
+          // var overDelay = (2 / overDu) * 100;
           if(textLength > 128) {
-            $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu});
+            $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu+'s'});
+            setTimeout(function(){
+
+            },2000);
           }
         }
       },200)
     }
     return this;
-  };
-}( jQuery ));
-$(document).ready(function(){
-  maxHeight = window.innerHeight - 220;
-  $(window).resize(function(){
-    maxHeight = window.innerHeight - 220;
-    if($('#caseview').hasClass('open')) {
-      $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
-      setTimeout(function(){
-        overflowHeight = $('.caseview_lst').prop('scrollHeight') - 10;
-        scrollTest(maxHeight, overflowHeight);
-      },700)
-    }
-  });
-  $('.caseview_toggle').click(function(){
-    $('.caseview_lst li').css({"transition":"all 0.5s"});
-    if($(this).parent().hasClass('open')){
-      $(this).parent().removeClass('open');
-      $('.caseview_lst').css({"max-height":"0","overflow-y":"hidden"});
-      $('.caseview_lst').removeClass('scrolling');
-      $('.caseview_lst').scrollTop(0);
-    }
-    else {
-      $(this).parent().addClass('open');
-      $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
-      setTimeout(function(){
-        overflowHeight = $('.caseview_lst').prop('scrollHeight') - 10;
-        scrollTest(maxHeight, overflowHeight);
-      },700)
-    }
-  });
-  $('.caseview_lst').scroll(function(){
-    innerST = $(this).scrollTop();
-    if(innerST > 0) {
-      $('.caseview_lst').removeClass('scrolling');
-    }
-    else {
-      if(!$(this).parent().hasClass('open')){
-        $('.caseview_lst').removeClass('scrolling');
+    function scrollTest(mH, oH){
+      if(mH < oH) {
+        $('.caseview_lst').addClass('scrolling');
+        console.log(mH,oH);
       }
       else {
-        $('.caseview_lst').addClass('scrolling');
+        $('.caseview_lst').removeClass('scrolling');
       }
     }
-  });
-  function scrollTest(mH, oH){
-    if(mH < oH) {
-      $('.caseview_lst').addClass('scrolling');
-      console.log(mH,oH);
-    }
-    else {
-      $('.caseview_lst').removeClass('scrolling');
-    }
-  }
-})
+  };
+}( jQuery ));
