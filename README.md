@@ -26,6 +26,7 @@
 $(document).ready(function(){
   $('#caseview').caseOpen({
     zIndex: "3000",
+    position: "bottom-right",
     caseLength: "6",
     case1: "bg-blue,$(body).css({'background-color':'#00f'}).find('h2').text('blue')",
     case2: "bg-yellow,$(body).css({'background-color':'#0f0'}).find('h2').text('green')",
@@ -42,3 +43,7 @@ $(document).ready(function(){
 케이스 갯수에 맞게 caseN: "케이스텍스트, 클릭시 동작구문" 값을 설정해 주세요. 
 
 zIndex 는 #caseview 에 style로 z-index 값을 부여합니다. 상황에 맞게 부여해주세요. 기본값은 1000 입니다. 
+
+position 은 케이스뷰 모듈의 위치를 결정합니다. 'top-right' , 'top-left' , 'bottom-right' , 'bottom-left' 총 4가지 이며 기본값은 'bottom-left' 입니다.
+
+또한 모바일 환경에서는 드래그하여 드래그가 끝나는 지점에서 가장 가까운 위치로 재위치 됩니다. 

@@ -3,14 +3,30 @@
 
 .caseview {
   position: fixed; 
-  bottom: 50px; 
+}
+
+.caseview.bottom-left {
+  bottom: 50px;
   left: 20px;
 }
 
+.caseview.bottom-right {
+  bottom: 50px;
+  right: 20px;
+}
+
+.caseview.top-left {
+  top: 50px;
+  left: 20px;
+}
+
+.caseview.top-right {
+  top: 50px;
+  right: 20px;
+}  
+
 .caseview_lst {
   position: absolute;
-  bottom: 62px;
-  left: 0;
   overflow: hidden;
   padding: 0 5px;
   max-height: 0;
@@ -19,6 +35,26 @@
   overflow: -moz-scrollbars-none;
   -webkit-overflow-scrolling: touch;
 }
+
+.bottom-left .caseview_lst {
+  bottom: 62px;
+  left: 0;
+}
+
+.bottom-right .caseview_lst {
+  bottom: 62px;
+  right: 0;
+}
+
+.top-left .caseview_lst {
+  top: 62px;
+  left: 0;
+}
+
+.top-right .caseview_lst {
+  top: 62px;
+  right: 0;
+}  
 
 .caseview_lst:after {
   position: absolute;
@@ -50,11 +86,17 @@
 .open .caseview_lst {
   padding: 5px;
 }
-.caseview_lst li {
+
+.top-right .caseview_lst li,.top-left .caseview_lst li {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bottom-right .caseview_lst li,.bottom-left .caseview_lst li {
   transform: translateY(100%);
   opacity: 0;
   pointer-events: none;
-  /*transition: all 1s;*/
 }
 .open .caseview_lst li {
   transform: translateY(0);

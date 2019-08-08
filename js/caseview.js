@@ -8,10 +8,11 @@ document.head.appendChild(objLink);
 (function ( $ ) {
   $.fn.caseOpen = function( options ) {
     var settings = $.extend({
-        zIndex: "1000"
+        zIndex: "1000",
+        position: "bottom-left"
     }, options );
     maxHeight = window.innerHeight - 220;
-    $('#caseview').css({"z-index":settings.zIndex});
+    $('#caseview').css({"z-index":settings.zIndex}).addClass(settings.position);
     $('#caseview').append('<ul class="caseview_lst" /><a href="#" class="caseview_toggle" />');
     for (var i=1;i<=settings.caseLength;i++){
       var str = '<li><button type="button"><span class="txt"><span /></span></button></li>';
@@ -38,6 +39,31 @@ document.head.appendChild(objLink);
           scrollTest(maxHeight, overflowHeight);
         },700)
       }
+    });
+    $('.caseview_toggle').on('touchmove', function(event){
+       var x = event.touches[0].clientX;
+       var y = event.touches[0].clientY;
+       var xMax = $(window).innerWidth() / 2;
+       var yMax = $(window).innerHeight() / 2;
+       var position = ['',''];
+       $(this).parent().css({'left':x,'bottom':'unset','top':y});
+       console.log(x+','+y+','+xMax+','+yMax);
+       $(this).on('touchend',function(){
+        if(y < yMax) {
+          position[0] = 'top';
+        }
+        else {
+          position[0] = 'bottom';
+        }
+        if(x < xMax) {
+          position[1] = 'left';
+        }
+        else {
+          position[1] = 'right';
+        }
+        positionC = position.join('-');
+        $('.caseview').removeClass('top-right top-left bottom-right bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass(positionC);
+       });
     });
     $(window).resize(function(){
       maxHeight = window.innerHeight - 220;
