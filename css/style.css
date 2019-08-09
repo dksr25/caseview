@@ -33,7 +33,11 @@
   transition: all 0.6s;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: auto;
+}
+
+.caseview_lst::-webkit-scrollbar {
+  display: none;
 }
 
 .bottom-left .caseview_lst {
@@ -58,9 +62,9 @@
 
 .caseview_lst:after {
   position: absolute;
-  right: 0;
+  right: 3px;
   bottom: 0;
-  left: 0;
+  left: 3px;
   height: 0;
   /*background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);
   background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);
@@ -75,12 +79,9 @@
   content: '';
 }
 
-.caseview_lst::-webkit-scrollbar {
-  display: none;
-}
 
 .caseview_lst.scrolling:after {
-  height: 8px;
+  height: 50px;
 }
 
 .open .caseview_lst {
@@ -109,7 +110,7 @@
   overflow: hidden;
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 7px 0 5px;
+  padding: 5px;
   width: 150px; 
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0,0,0,.5);
@@ -133,7 +134,7 @@
   padding: 0 8px;
   font-family: 'Song Myung', serif;
   font-size: 13px;
-  line-height: 14px;
+  line-height: 16px;
   font-weight: 600;
   color: #333;
   white-space: nowrap;
@@ -145,21 +146,21 @@
 }
 
 .caseview_lst li button > .txt > .long {
-  animation-duration: var(--overduration);
-  -webkit-animation-duration: var(--overduration);
   -moz-animation-duration: var(--overduration);
+  -webkit-animation-duration: var(--overduration);
+  animation-duration: var(--overduration);
+  -moz-animation-name: -moz-swing;
+  -webkit-animation-name: -webkit-swing;
   animation-name: swing;
-  -webkit-animation-name: swing;
-  -moz-animation-name: swing;
-  animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
   -moz-animation-iteration-count: infinite;
-  animation-direction: alternate;
-  -webkit-animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -moz-animation-direction: alternate;
-  animation-timing-function: linear;
-  -webkit-animation-timing-function: linear;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
   -moz-animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 .caseview_lst li + li {
@@ -205,6 +206,40 @@
   content: '';
 }
 
+@-moz-keyframes -moz-swing {
+  from {
+    transform: translateX(8px);
+  }
+
+  15% {
+    transform: translateX(8px);
+  }
+
+  85% {
+    transform: translateX(var(--overflow));
+  }
+  
+  to {
+    transform: translateX(var(--overflow));
+ }
+}
+@-webkit-keyframes -webkit-swing {
+  from {
+    -webkit-transform: translateX(8px);
+  }
+
+  15% {
+    -webkit-transform: translateX(8px);
+  }
+
+  85% {
+    -webkit-transform: translateX(var(--overflow));
+  }
+  
+  to {
+    -webkit-transform: translateX(var(--overflow));
+ }
+}
 @keyframes swing {
   from {
     transform: translateX(8px);
@@ -223,38 +258,3 @@
  }
 }
 
-@-webkit-keyframes swing {
-  from {
-    -webkit-transform: translateX(8px);
-  }
-
-  15% {
-    -webkit-transform: translateX(8px);
-  }
-
-  85% {
-    -webkit-transform: translateX(var(--overflow));
-  }
-  
-  to {
-    -webkit-transform: translateX(var(--overflow));
- }
-}
-
-@-moz-keyframes swing {
-  from {
-    transform: translateX(8px);
-  }
-
-  15% {
-    transform: translateX(8px);
-  }
-
-  85% {
-    transform: translateX(var(--overflow));
-  }
-  
-  to {
-    transform: translateX(var(--overflow));
- }
-}

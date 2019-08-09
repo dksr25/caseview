@@ -7,9 +7,9 @@ document.head.appendChild(objLink);
 
 (function ( $ ) {
   $.fn.caseOpen = function( options ) {
-    var settings = $.extend({
-        zIndex: "1000",
-        position: "bottom-left"
+      settings = $.extend({
+      zIndex: "1000",
+      position: "bottom-left"
     }, options );
     maxHeight = window.innerHeight - 220;
     $('#caseview').css({"z-index":settings.zIndex}).addClass(settings.position);
@@ -47,7 +47,6 @@ document.head.appendChild(objLink);
        var yMax = $(window).innerHeight() / 2;
        var position = ['',''];
        $(this).parent().css({'left':x,'bottom':'unset','top':y});
-       console.log(x+','+y+','+xMax+','+yMax);
        $(this).on('touchend',function(){
         if(y < yMax) {
           position[0] = 'top';
@@ -89,27 +88,11 @@ document.head.appendChild(objLink);
         }
       }
     });
-    window.onload = function(){
-      setTimeout(function(){
-        for (var n=1;n<=settings.caseLength;n++){
-          var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt span').prop('scrollWidth');
-          var over = 140 - textLength;
-          var overDu = -(Math.round(over/28)-1);
-          // var overDelay = (2 / overDu) * 100;
-          if(textLength > 128) {
-            $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu+'s'});
-            setTimeout(function(){
-
-            },2000);
-          }
-        }
-      },200)
-    }
+    
     return this;
     function scrollTest(mH, oH){
       if(mH < oH) {
         $('.caseview_lst').addClass('scrolling');
-        console.log(mH,oH);
       }
       else {
         $('.caseview_lst').removeClass('scrolling');
@@ -117,3 +100,16 @@ document.head.appendChild(objLink);
     }
   };
 }( jQuery ));
+window.onload = function(){
+  setTimeout(function(){
+    for (var n=1;n<=settings.caseLength;n++){
+      var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt span').prop('scrollWidth');
+      var over = 132 - textLength;
+      var overDu = -(Math.round(over/28)-1);
+      // var overDelay = (2 / overDu) * 100;
+      if(textLength > 128) {
+        $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu+'s'});
+      }
+    }
+  },200)
+}
