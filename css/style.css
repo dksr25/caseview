@@ -30,10 +30,11 @@
   overflow: hidden;
   padding: 0 5px;
   max-height: 0;
-  transition: all 0.6s;
+  transition: all 0.6s ease-out;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   -webkit-overflow-scrolling: auto;
+  pointer-events: none;
 }
 
 .caseview_lst::-webkit-scrollbar {
@@ -60,47 +61,35 @@
   right: 0;
 }  
 
-.caseview_lst:after {
-  position: absolute;
-  right: 3px;
-  bottom: 0;
-  left: 3px;
-  height: 0;
-  /*background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);
-  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 100%);*/
-  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.5) 100%);
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.5) 100%);
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 70%, rgba(0,0,0,.5) 100%);
-  transition: all 0.2s;
-  /*filter: blur(5px);
-  -webkit-filter: blur(5px);*/
-  pointer-events: none;
-  content: '';
+.caseview_lst.scrolling {
+  box-shadow: 0px 12px 6px -6px rgba(0,0,0,.5);
+}  
+
+.top-right .caseview_lst,.top-left .caseview_lst {
+  transform: translateY(-100%);
 }
 
-
-.caseview_lst.scrolling:after {
-  height: 50px;
+.bottom-right .caseview_lst,.bottom-left .caseview_lst {
+  transform: translateY(100%);
 }
 
 .open .caseview_lst {
+  transform: translateY(0);
   padding: 5px;
+  pointer-events: auto;
 }
 
+
 .top-right .caseview_lst li,.top-left .caseview_lst li {
-  transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
 }
 
 .bottom-right .caseview_lst li,.bottom-left .caseview_lst li {
-  transform: translateY(100%);
   opacity: 0;
   pointer-events: none;
 }
 .open .caseview_lst li {
-  transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
@@ -149,8 +138,8 @@
   -moz-animation-duration: var(--overduration);
   -webkit-animation-duration: var(--overduration);
   animation-duration: var(--overduration);
-  -moz-animation-name: -moz-swing;
-  -webkit-animation-name: -webkit-swing;
+  -moz-animation-name: swing;
+  -webkit-animation-name: swing;
   animation-name: swing;
   -moz-animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
@@ -206,7 +195,7 @@
   content: '';
 }
 
-@-moz-keyframes -moz-swing {
+@-moz-keyframes swing {
   from {
     transform: translateX(8px);
   }
@@ -223,7 +212,7 @@
     transform: translateX(var(--overflow));
  }
 }
-@-webkit-keyframes -webkit-swing {
+@-webkit-keyframes swing {
   from {
     -webkit-transform: translateX(8px);
   }

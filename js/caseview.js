@@ -27,7 +27,7 @@ document.head.appendChild(objLink);
       $('.caseview_lst li').css({"transition":"all 0.5s"});
       if($(this).parent().hasClass('open')){
         $(this).parent().removeClass('open');
-        $('.caseview_lst').css({"max-height":"0","overflow-y":"hidden"});
+        $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"hidden"});
         $('.caseview_lst').removeClass('scrolling');
         $('.caseview_lst').scrollTop(0);
       }
@@ -40,29 +40,58 @@ document.head.appendChild(objLink);
         },700)
       }
     });
+    $('.caseview_toggle').on('touchstart',function(event){
+      startTime = Date.now();
+      xStart = event.touches[0].clientX;
+      yStart = event.touches[0].clientY;  
+    });
     $('.caseview_toggle').on('touchmove', function(event){
-       var x = event.touches[0].clientX;
-       var y = event.touches[0].clientY;
-       var xMax = $(window).innerWidth() / 2;
-       var yMax = $(window).innerHeight() / 2;
-       var position = ['',''];
-       $(this).parent().css({'left':x,'bottom':'unset','top':y});
-       $(this).on('touchend',function(){
-        if(y < yMax) {
-          position[0] = 'top';
+      var x = event.touches[0].clientX;
+      var y = event.touches[0].clientY;
+      var xMax = $(window).innerWidth() / 2;
+      var yMax = $(window).innerHeight() / 2;
+      var position = ['',''];
+      
+      $(this).parent().css({'right':'unset','left':x-26,'bottom':'unset','top':y-26});
+      $(this).on('touchend',function(event){
+        endTime = Date.now();
+        touchDuration = endTime - startTime;
+        var deltaX = event.changedTouches[0].clientX - xStart;
+        var deltaY = yStart - event.changedTouches[0].clientY;
+        var deltaC = Math.sqrt((deltaX*deltaX + deltaY*deltaY));
+        angle = 0;
+        aSection = 0;
+        if(touchDuration>600) {
+          if(y < yMax) {
+            position[0] = 'top';
+          }
+          else {
+            position[0] = 'bottom';
+          }
+          if(x < xMax) {
+            position[1] = 'left';
+          }
+          else {
+            position[1] = 'right';
+          }
+          positionC = position.join('-');
+          $('.caseview').removeClass('top-right top-left bottom-right bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass(positionC);
         }
         else {
-          position[0] = 'bottom';
-        }
-        if(x < xMax) {
-          position[1] = 'left';
-        }
-        else {
-          position[1] = 'right';
-        }
-        positionC = position.join('-');
-        $('.caseview').removeClass('top-right top-left bottom-right bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass(positionC);
-       });
+          if(deltaY>=0) {
+            angle = Math.round(Math.acos(deltaX/deltaC)*180/Math.PI);
+          }
+          else {
+            angle = Math.round(360 - Math.acos(deltaX/deltaC)*180/Math.PI);
+          }
+          if(deltaC>50) {
+            angularSection(angle,$(this).parent());
+          }
+          else {
+            $(this).parent().removeAttr('style').css({"z-index":settings.zIndex});
+          }
+        }  
+      });
     });
     $(window).resize(function(){
       maxHeight = window.innerHeight - 220;
@@ -88,7 +117,6 @@ document.head.appendChild(objLink);
         }
       }
     });
-    
     return this;
     function scrollTest(mH, oH){
       if(mH < oH) {
@@ -96,6 +124,92 @@ document.head.appendChild(objLink);
       }
       else {
         $('.caseview_lst').removeClass('scrolling');
+      }
+    }
+    function angularSection (angle,target) {
+      if(23 < angle && angle < 68) {
+        aSection = 2;
+        if(target.hasClass('bottom-left')) {
+          target.removeClass('bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-right');
+        }
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }
+      }
+      else if(69 < angle && angle < 114) {
+        aSection = 3;
+        if(target.hasClass('bottom-left')) {
+          target.removeClass('bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-left');
+        }
+        else if(target.hasClass('bottom-right')) {
+          target.removeClass('bottom-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-right');
+        }
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }          
+      }
+      else if(115 < angle && angle < 160) {
+        aSection = 4;
+        if(target.hasClass('bottom-right')) {
+          target.removeClass('bottom-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-left');
+        }
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }     
+      }
+      else if(161 < angle && angle < 206) {
+        aSection = 5;
+        if(target.hasClass('bottom-right')) {
+          target.removeClass('bottom-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-left');
+        }
+        else if(target.hasClass('top-right')) {
+          target.removeClass('top-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-left');
+        }          
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }
+      }
+      else if(207 < angle && angle < 252) {
+        aSection = 6;
+        if(target.hasClass('top-right')) {
+          target.removeClass('top-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-left');
+        }
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }
+      }
+      else if(253 < angle && angle < 298) {
+        aSection = 7;       
+        if(target.hasClass('top-right')) {
+          target.removeClass('top-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-right');
+        }  
+        else if(target.hasClass('top-left')) {
+          target.removeClass('top-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-left');
+        }
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }
+      }
+      else if(299 < angle && angle < 344) {
+        aSection = 8;          
+        if(target.hasClass('top-left')) {
+          target.removeClass('top-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-right');
+        } 
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }
+      }
+      else {
+        aSection = 1;
+        if(target.hasClass('top-left')) {
+          target.removeClass('top-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-right');
+        }    
+        else if(target.hasClass('bottom-left')) {
+          target.removeClass('bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-right');
+        }
+        else {
+          target.removeAttr('style').css({"z-index":settings.zIndex});
+        }      
       }
     }
   };
