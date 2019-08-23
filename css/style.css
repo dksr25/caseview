@@ -30,7 +30,10 @@
   overflow: hidden;
   padding: 0 5px;
   max-height: 0;
+  box-shadow: 0px 12px 6px -6px rgba(0,0,0,0);
+  -webkit-box-shadow: 0px 12px 6px -6px rgba(0,0,0,0);
   transition: all 0.6s ease-out;
+  -webkit-transition: all 0.6s ease-out;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   -webkit-overflow-scrolling: auto;
@@ -63,6 +66,7 @@
 
 .caseview_lst.scrolling {
   box-shadow: 0px 12px 6px -6px rgba(0,0,0,.5);
+  -webkit-box-shadow: 0px 12px 6px -6px rgba(0,0,0,.5);
 }  
 
 .top-right .caseview_lst,.top-left .caseview_lst {
