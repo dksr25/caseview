@@ -48,11 +48,14 @@ document.head.appendChild(objLink);
     $('.caseview_toggle').on('touchmove', function(event){
       var x = event.touches[0].clientX;
       var y = event.touches[0].clientY;
+      var deltaX = event.changedTouches[0].clientX - xStart;
+      var deltaY = yStart - event.changedTouches[0].clientY;
       var xMax = $(window).innerWidth() / 2;
       var yMax = $(window).innerHeight() / 2;
       var position = ['',''];
-      
-      $(this).parent().css({'right':'unset','left':x-26,'bottom':'unset','top':y-26});
+      console.log(x+','+y);
+      // $(this).parent().css({'right':'unset','left':x-26,'bottom':'unset','top':y-26});
+      $(this).parent().css({'transform':'translate('+deltaX+'px,'+(-deltaY)+'px)'});
       $(this).on('touchend',function(event){
         endTime = Date.now();
         touchDuration = endTime - startTime;
