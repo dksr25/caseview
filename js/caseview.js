@@ -43,7 +43,10 @@ document.head.appendChild(objLink);
     $('.caseview_toggle').on('touchstart',function(event){
       startTime = Date.now();
       xStart = event.touches[0].clientX;
-      yStart = event.touches[0].clientY;  
+      yStart = event.touches[0].clientY;
+      startScroll = $(window).scrollTop();  
+      $('body').css({'position':'fixed','transform':'translateY(-'+startScroll+'px)'});
+      console.log(startScroll);
     });
     $('.caseview_toggle').on('touchmove', function(event){
       var x = event.touches[0].clientX;
@@ -53,10 +56,12 @@ document.head.appendChild(objLink);
       var xMax = $(window).innerWidth() / 2;
       var yMax = $(window).innerHeight() / 2;
       var position = ['',''];
-      console.log(x+','+y);
+      // console.log(x+','+y);
       // $(this).parent().css({'right':'unset','left':x-26,'bottom':'unset','top':y-26});
-      $(this).parent().css({'transform':'translate('+deltaX+'px,'+(-deltaY)+'px)'});
+      $(this).parent().css({'transform':'translate('+deltaX+'px,'+(-deltaY+startScroll)+'px)'});
       $(this).on('touchend',function(event){
+        $('body').removeAttr('style');
+        $('html,body').scrollTop(startScroll);
         endTime = Date.now();
         touchDuration = endTime - startTime;
         var deltaX = event.changedTouches[0].clientX - xStart;
