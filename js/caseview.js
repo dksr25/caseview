@@ -13,7 +13,7 @@ document.head.appendChild(objLink);
     }, options );
     maxHeight = window.innerHeight - 220;
     $('#caseview').css({"z-index":settings.zIndex}).addClass(settings.position);
-    $('#caseview').append('<ul class="caseview_lst" /><a href="#" class="caseview_toggle" />');
+    $('#caseview').append('<ul class="caseview_lst" /><button type="button" class="caseview_toggle" />');
     for (var i=1;i<=settings.caseLength;i++){
       var str = '<li><button type="button"><span class="txt"><span /></span></button></li>';
       $('.caseview_lst').append(str);
