@@ -45,7 +45,6 @@ document.head.appendChild(objLink);
       xStart = event.touches[0].clientX;
       yStart = event.touches[0].clientY;
       startScroll = $(window).scrollTop();  
-      $('body').css({'position':'fixed','transform':'translateY(-'+startScroll+'px)'});
       console.log(startScroll);
     });
     $('.caseview_toggle').on('touchmove', function(event){
@@ -59,6 +58,7 @@ document.head.appendChild(objLink);
       // console.log(x+','+y);
       // $(this).parent().css({'right':'unset','left':x-26,'bottom':'unset','top':y-26});
       $(this).parent().css({'transform':'translate('+deltaX+'px,'+(-deltaY+startScroll)+'px)'});
+      $('body').css({'position':'fixed','transform':'translateY(-'+startScroll+'px)'});
       $(this).on('touchend',function(event){
         $('body').removeAttr('style');
         $('html,body').scrollTop(startScroll);
@@ -69,7 +69,7 @@ document.head.appendChild(objLink);
         var deltaC = Math.sqrt((deltaX*deltaX + deltaY*deltaY));
         angle = 0;
         aSection = 0;
-        if(touchDuration>600) {
+        if (touchDuration>600) {
           if(y < yMax) {
             position[0] = 'top';
           }
