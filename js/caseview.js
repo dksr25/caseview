@@ -44,62 +44,59 @@ document.head.appendChild(objLink);
       startTime = Date.now();
       xStart = event.touches[0].clientX;
       yStart = event.touches[0].clientY;
-      startScroll = $(window).scrollTop();  
-      console.log(startScroll);
+      $(this).parent().css({'pointer-events':'auto'});
     });
     $('.caseview_toggle').on('touchmove', function(event){
-      var x = event.touches[0].clientX;
-      var y = event.touches[0].clientY;
+      x = event.touches[0].clientX;
+      y = event.touches[0].clientY;
       var deltaX = event.changedTouches[0].clientX - xStart;
       var deltaY = yStart - event.changedTouches[0].clientY;
-      var xMax = $(window).innerWidth() / 2;
-      var yMax = $(window).innerHeight() / 2;
-      var position = ['',''];
+      xMax = $(window).innerWidth() / 2;
+      yMax = $(window).innerHeight() / 2;
+      position = ['',''];
       // console.log(x+','+y);
-      // $(this).parent().css({'right':'unset','left':x-26,'bottom':'unset','top':y-26});
-      $(this).parent().css({'transform':'translate('+deltaX+'px,'+(-deltaY+startScroll)+'px)'});
-      $('body').css({'position':'fixed','transform':'translateY(-'+startScroll+'px)'});
-      $(this).on('touchend',function(event){
-        $('body').removeAttr('style');
-        $('html,body').scrollTop(startScroll);
-        endTime = Date.now();
-        touchDuration = endTime - startTime;
-        var deltaX = event.changedTouches[0].clientX - xStart;
-        var deltaY = yStart - event.changedTouches[0].clientY;
-        var deltaC = Math.sqrt((deltaX*deltaX + deltaY*deltaY));
-        angle = 0;
-        aSection = 0;
-        if (touchDuration>600) {
-          if(y < yMax) {
-            position[0] = 'top';
-          }
-          else {
-            position[0] = 'bottom';
-          }
-          if(x < xMax) {
-            position[1] = 'left';
-          }
-          else {
-            position[1] = 'right';
-          }
-          positionC = position.join('-');
-          $('.caseview').removeClass('top-right top-left bottom-right bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass(positionC);
+      $(this).css({'transform':'translate('+deltaX+'px,'+(-deltaY)+'px)'});
+    });
+    $('.caseview_toggle').on('touchend',function(event){
+      $(this).parent().css({'pointer-events':'none'});
+      endTime = Date.now();
+      touchDuration = endTime - startTime;
+      var deltaX = event.changedTouches[0].clientX - xStart;
+      var deltaY = yStart - event.changedTouches[0].clientY;
+      var deltaC = Math.sqrt((deltaX*deltaX + deltaY*deltaY));
+      angle = 0;
+      aSection = 0;
+      if (touchDuration>600) {
+        if(y < yMax) {
+          position[0] = 'top';
         }
         else {
-          if(deltaY>=0) {
-            angle = Math.round(Math.acos(deltaX/deltaC)*180/Math.PI);
-          }
-          else {
-            angle = Math.round(360 - Math.acos(deltaX/deltaC)*180/Math.PI);
-          }
-          if(deltaC>50) {
-            angularSection(angle,$(this).parent());
-          }
-          else {
-            $(this).parent().removeAttr('style').css({"z-index":settings.zIndex});
-          }
-        }  
-      });
+          position[0] = 'bottom';
+        }
+        if(x < xMax) {
+          position[1] = 'left';
+        }
+        else {
+          position[1] = 'right';
+        }
+        positionC = position.join('-');
+        $('.caseview').removeClass('top-right top-left bottom-right bottom-left').addClass(positionC);
+        $(this).removeAttr('style');
+      }
+      else {
+        if(deltaY>=0) {
+          angle = Math.round(Math.acos(deltaX/deltaC)*180/Math.PI);
+        }
+        else {
+          angle = Math.round(360 - Math.acos(deltaX/deltaC)*180/Math.PI);
+        }
+        if(deltaC>50) {
+          angularSection(angle,$(this).parent());
+        }
+        else {
+          $(this).parent().removeAttr('style').css({"z-index":settings.zIndex});
+        }
+      }  
     });
     $(window).resize(function(){
       maxHeight = window.innerHeight - 220;
@@ -138,87 +135,64 @@ document.head.appendChild(objLink);
       if(23 < angle && angle < 68) {
         aSection = 2;
         if(target.hasClass('bottom-left')) {
-          target.removeClass('bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-right');
-        }
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
+          target.removeClass('bottom-left').addClass('top-right');
         }
       }
       else if(69 < angle && angle < 114) {
         aSection = 3;
         if(target.hasClass('bottom-left')) {
-          target.removeClass('bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-left');
+          target.removeClass('bottom-left').addClass('top-left');
         }
         else if(target.hasClass('bottom-right')) {
-          target.removeClass('bottom-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-right');
+          target.removeClass('bottom-right').addClass('top-right');
         }
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
-        }          
       }
       else if(115 < angle && angle < 160) {
         aSection = 4;
         if(target.hasClass('bottom-right')) {
-          target.removeClass('bottom-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-left');
+          target.removeClass('bottom-right').addClass('top-left');
         }
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
-        }     
       }
       else if(161 < angle && angle < 206) {
         aSection = 5;
         if(target.hasClass('bottom-right')) {
-          target.removeClass('bottom-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-left');
+          target.removeClass('bottom-right').addClass('bottom-left');
         }
         else if(target.hasClass('top-right')) {
-          target.removeClass('top-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-left');
+          target.removeClass('top-right').addClass('top-left');
         }          
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
-        }
       }
       else if(207 < angle && angle < 252) {
         aSection = 6;
         if(target.hasClass('top-right')) {
-          target.removeClass('top-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-left');
-        }
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
+          target.removeClass('top-right').addClass('bottom-left');
         }
       }
       else if(253 < angle && angle < 298) {
         aSection = 7;       
         if(target.hasClass('top-right')) {
-          target.removeClass('top-right').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-right');
+          target.removeClass('top-right').addClass('bottom-right');
         }  
         else if(target.hasClass('top-left')) {
-          target.removeClass('top-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-left');
-        }
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
+          target.removeClass('top-left').addClass('bottom-left');
         }
       }
       else if(299 < angle && angle < 344) {
         aSection = 8;          
         if(target.hasClass('top-left')) {
-          target.removeClass('top-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-right');
+          target.removeClass('top-left').addClass('bottom-right');
         } 
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
-        }
       }
       else {
         aSection = 1;
         if(target.hasClass('top-left')) {
-          target.removeClass('top-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('top-right');
+          target.removeClass('top-left').addClass('top-right');
         }    
         else if(target.hasClass('bottom-left')) {
-          target.removeClass('bottom-left').removeAttr('style').css({"z-index":settings.zIndex}).addClass('bottom-right');
+          target.removeClass('bottom-left').addClass('bottom-right');
         }
-        else {
-          target.removeAttr('style').css({"z-index":settings.zIndex});
-        }      
       }
+      $('.caseview_toggle').removeAttr('style');
     }
   };
 }( jQuery ));
