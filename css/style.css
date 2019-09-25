@@ -16,13 +16,13 @@ body {
   pointer-events: none;
 }
 
-.caseview:after {
+/* .caseview:after {
   display: inline-block;
   vertical-align: top;
   height: 100%;
   padding-bottom: 1px;
   content: '';
-}
+} */
 
 
 

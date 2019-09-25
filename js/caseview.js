@@ -40,64 +40,64 @@ document.head.appendChild(objLink);
         },700)
       }
     });
-    $('.caseview_toggle').on('touchstart',function(event){
-      startTime = Date.now();
-      xStart = event.touches[0].clientX;
-      yStart = event.touches[0].clientY;
-      $(this).parent().css({'pointer-events':'auto'});
-    });
-    $('.caseview_toggle').on('touchmove', function(event){
-      x = event.touches[0].clientX;
-      y = event.touches[0].clientY;
-      var deltaX = event.changedTouches[0].clientX - xStart;
-      var deltaY = yStart - event.changedTouches[0].clientY;
-      xMax = $(window).innerWidth() / 2;
-      yMax = $(window).innerHeight() / 2;
-      position = ['',''];
-      // console.log(x+','+y);
-      $(this).css({'transform':'translate('+deltaX+'px,'+(-deltaY)+'px)'});
-    });
-    $('.caseview_toggle').on('touchend',function(event){
-      $(this).parent().css({'pointer-events':'none'});
-      endTime = Date.now();
-      touchDuration = endTime - startTime;
-      var deltaX = event.changedTouches[0].clientX - xStart;
-      var deltaY = yStart - event.changedTouches[0].clientY;
-      var deltaC = Math.sqrt((deltaX*deltaX + deltaY*deltaY));
-      angle = 0;
-      aSection = 0;
-      if (touchDuration>600) {
-        if(y < yMax) {
-          position[0] = 'top';
-        }
-        else {
-          position[0] = 'bottom';
-        }
-        if(x < xMax) {
-          position[1] = 'left';
-        }
-        else {
-          position[1] = 'right';
-        }
-        positionC = position.join('-');
-        $('.caseview').removeClass('top-right top-left bottom-right bottom-left').addClass(positionC);
-        $(this).removeAttr('style');
-      }
-      else {
-        if(deltaY>=0) {
-          angle = Math.round(Math.acos(deltaX/deltaC)*180/Math.PI);
-        }
-        else {
-          angle = Math.round(360 - Math.acos(deltaX/deltaC)*180/Math.PI);
-        }
-        if(deltaC>50) {
-          angularSection(angle,$(this).parent());
-        }
-        else {
-          $(this).parent().removeAttr('style').css({"z-index":settings.zIndex});
-        }
-      }  
-    });
+    // $('.caseview_toggle').on('touchstart',function(event){
+    //   startTime = Date.now();
+    //   xStart = event.touches[0].clientX;
+    //   yStart = event.touches[0].clientY;
+    //   $(this).parent().css({'pointer-events':'auto'});
+    // });
+    // $('.caseview_toggle').on('touchmove', function(event){
+    //   x = event.touches[0].clientX;
+    //   y = event.touches[0].clientY;
+    //   var deltaX = event.changedTouches[0].clientX - xStart;
+    //   var deltaY = yStart - event.changedTouches[0].clientY;
+    //   xMax = $(window).innerWidth() / 2;
+    //   yMax = $(window).innerHeight() / 2;
+    //   position = ['',''];
+    //   // console.log(x+','+y);
+    //   $(this).css({'transform':'translate('+deltaX+'px,'+(-deltaY)+'px)'});
+    // });
+    // $('.caseview_toggle').on('touchend',function(event){
+    //   $(this).parent().css({'pointer-events':'none'});
+    //   endTime = Date.now();
+    //   touchDuration = endTime - startTime;
+    //   var deltaX = event.changedTouches[0].clientX - xStart;
+    //   var deltaY = yStart - event.changedTouches[0].clientY;
+    //   var deltaC = Math.sqrt((deltaX*deltaX + deltaY*deltaY));
+    //   angle = 0;
+    //   aSection = 0;
+    //   if (touchDuration>600) {
+    //     if(y < yMax) {
+    //       position[0] = 'top';
+    //     }
+    //     else {
+    //       position[0] = 'bottom';
+    //     }
+    //     if(x < xMax) {
+    //       position[1] = 'left';
+    //     }
+    //     else {
+    //       position[1] = 'right';
+    //     }
+    //     positionC = position.join('-');
+    //     $('.caseview').removeClass('top-right top-left bottom-right bottom-left').addClass(positionC);
+    //     $(this).removeAttr('style');
+    //   }
+    //   else {
+    //     if(deltaY>=0) {
+    //       angle = Math.round(Math.acos(deltaX/deltaC)*180/Math.PI);
+    //     }
+    //     else {
+    //       angle = Math.round(360 - Math.acos(deltaX/deltaC)*180/Math.PI);
+    //     }
+    //     if(deltaC>50) {
+    //       angularSection(angle,$(this).parent());
+    //     }
+    //     else {
+    //       $(this).parent().removeAttr('style').css({"z-index":settings.zIndex});
+    //     }
+    //   }  
+    // });
     $(window).resize(function(){
       maxHeight = window.innerHeight - 220;
       if($('#caseview').hasClass('open')) {
