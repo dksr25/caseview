@@ -131,69 +131,69 @@ document.head.appendChild(objLink);
         $('.caseview_lst').removeClass('scrolling');
       }
     }
-    function angularSection (angle,target) {
-      if(23 < angle && angle < 68) {
-        aSection = 2;
-        if(target.hasClass('bottom-left')) {
-          target.removeClass('bottom-left').addClass('top-right');
-        }
-      }
-      else if(69 < angle && angle < 114) {
-        aSection = 3;
-        if(target.hasClass('bottom-left')) {
-          target.removeClass('bottom-left').addClass('top-left');
-        }
-        else if(target.hasClass('bottom-right')) {
-          target.removeClass('bottom-right').addClass('top-right');
-        }
-      }
-      else if(115 < angle && angle < 160) {
-        aSection = 4;
-        if(target.hasClass('bottom-right')) {
-          target.removeClass('bottom-right').addClass('top-left');
-        }
-      }
-      else if(161 < angle && angle < 206) {
-        aSection = 5;
-        if(target.hasClass('bottom-right')) {
-          target.removeClass('bottom-right').addClass('bottom-left');
-        }
-        else if(target.hasClass('top-right')) {
-          target.removeClass('top-right').addClass('top-left');
-        }          
-      }
-      else if(207 < angle && angle < 252) {
-        aSection = 6;
-        if(target.hasClass('top-right')) {
-          target.removeClass('top-right').addClass('bottom-left');
-        }
-      }
-      else if(253 < angle && angle < 298) {
-        aSection = 7;       
-        if(target.hasClass('top-right')) {
-          target.removeClass('top-right').addClass('bottom-right');
-        }  
-        else if(target.hasClass('top-left')) {
-          target.removeClass('top-left').addClass('bottom-left');
-        }
-      }
-      else if(299 < angle && angle < 344) {
-        aSection = 8;          
-        if(target.hasClass('top-left')) {
-          target.removeClass('top-left').addClass('bottom-right');
-        } 
-      }
-      else {
-        aSection = 1;
-        if(target.hasClass('top-left')) {
-          target.removeClass('top-left').addClass('top-right');
-        }    
-        else if(target.hasClass('bottom-left')) {
-          target.removeClass('bottom-left').addClass('bottom-right');
-        }
-      }
-      $('.caseview_toggle').removeAttr('style');
-    }
+    // function angularSection (angle,target) {
+    //   if(23 < angle && angle < 68) {
+    //     aSection = 2;
+    //     if(target.hasClass('bottom-left')) {
+    //       target.removeClass('bottom-left').addClass('top-right');
+    //     }
+    //   }
+    //   else if(69 < angle && angle < 114) {
+    //     aSection = 3;
+    //     if(target.hasClass('bottom-left')) {
+    //       target.removeClass('bottom-left').addClass('top-left');
+    //     }
+    //     else if(target.hasClass('bottom-right')) {
+    //       target.removeClass('bottom-right').addClass('top-right');
+    //     }
+    //   }
+    //   else if(115 < angle && angle < 160) {
+    //     aSection = 4;
+    //     if(target.hasClass('bottom-right')) {
+    //       target.removeClass('bottom-right').addClass('top-left');
+    //     }
+    //   }
+    //   else if(161 < angle && angle < 206) {
+    //     aSection = 5;
+    //     if(target.hasClass('bottom-right')) {
+    //       target.removeClass('bottom-right').addClass('bottom-left');
+    //     }
+    //     else if(target.hasClass('top-right')) {
+    //       target.removeClass('top-right').addClass('top-left');
+    //     }          
+    //   }
+    //   else if(207 < angle && angle < 252) {
+    //     aSection = 6;
+    //     if(target.hasClass('top-right')) {
+    //       target.removeClass('top-right').addClass('bottom-left');
+    //     }
+    //   }
+    //   else if(253 < angle && angle < 298) {
+    //     aSection = 7;       
+    //     if(target.hasClass('top-right')) {
+    //       target.removeClass('top-right').addClass('bottom-right');
+    //     }  
+    //     else if(target.hasClass('top-left')) {
+    //       target.removeClass('top-left').addClass('bottom-left');
+    //     }
+    //   }
+    //   else if(299 < angle && angle < 344) {
+    //     aSection = 8;          
+    //     if(target.hasClass('top-left')) {
+    //       target.removeClass('top-left').addClass('bottom-right');
+    //     } 
+    //   }
+    //   else {
+    //     aSection = 1;
+    //     if(target.hasClass('top-left')) {
+    //       target.removeClass('top-left').addClass('top-right');
+    //     }    
+    //     else if(target.hasClass('bottom-left')) {
+    //       target.removeClass('bottom-left').addClass('bottom-right');
+    //     }
+    //   }
+    //   $('.caseview_toggle').removeAttr('style');
+    // }
   };
 }( jQuery ));
 window.onload = function(){
