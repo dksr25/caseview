@@ -59,6 +59,7 @@
   overflow: -moz-scrollbars-none;
   -webkit-overflow-scrolling: auto;
   pointer-events: none;
+  background-color: transparent;
 }
 
 .caseview_lst::-webkit-scrollbar {
