@@ -206,7 +206,7 @@
   height: 3px;
   background-color: #666;
   box-shadow: 0 0 5px rgba(0,0,0,.2);
-  transition: transform 0.4s cubic-bezier(.82,.01,.98,.5);
+  transition: transform 0.6s;
   content: '';
 }
 .caseview_toggle:after {
@@ -219,7 +219,7 @@
   height: 30px;
   background-color: #666;
   box-shadow: 0 0 5px rgba(0,0,0,.2);
-  transition: transform 0.5s cubic-bezier(.82,.01,.98,.5);
+  transition: transform 0.5s;
   content: '';
 }
 .open .caseview_toggle:before,.open .caseview_toggle:after {
