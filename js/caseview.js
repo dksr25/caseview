@@ -35,6 +35,12 @@ document.head.appendChild(objLink);
         caseClose();
       },15000);
     });
+    $('body').on('touchstart',function(){
+      $('.caseview').css({'opacity':'0.2'});
+    });
+    $('body').on('touchend',function(){
+      $('.caseview').css({'opacity':'1'});
+    });
     
     function caseToggle(aa) {
       $('.caseview_lst li').css({"transition":"all 0.5s"});
