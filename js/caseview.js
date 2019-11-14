@@ -25,20 +25,23 @@ document.head.appendChild(objLink);
     });
     $('.caseview_toggle').click(function(){
       caseToggle($(this));
-      closeTimer = setTimeout(function(){
-        caseClose();
-      },15000);
+      $('.caseview').css({'opacity':'1'});
+      // closeTimer = setTimeout(function(){
+      //   caseClose();
+      // },15000);
     });
     $('.caseview_lst').find('button').on('click',function(){
-      clearTimeout(closeTimer);
-      closeTimer = setTimeout(function(){
-        caseClose();
-      },15000);
+      // clearTimeout(closeTimer);
+      // closeTimer = setTimeout(function(){
+      //   caseClose();
+      // },15000);
     });
-    $('body').on('touchstart',function(){
-      $('.caseview').css({'opacity':'0.2'});
+    $('body:not(#caseview)').on('touchstart',function(){
+      setTimeout(function(){
+        $('.caseview').css({'opacity':'0.2'});
+      },50)
     });
-    $('body').on('touchend',function(){
+    $('body:not(#caseview)').on('touchend',function(){
       $('.caseview').css({'opacity':'1'});
     });
     
@@ -48,12 +51,7 @@ document.head.appendChild(objLink);
         caseClose();
       }
       else {
-        aa.parent().addClass('open');
-        $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
-        setTimeout(function(){
-          overflowHeight = $('.caseview_lst').prop('scrollHeight') - 10;
-          scrollTest(maxHeight, overflowHeight);
-        },700)
+        caseDeploy();
       }
     }
     function caseClose () {
@@ -61,6 +59,14 @@ document.head.appendChild(objLink);
       $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"hidden"});
       $('.caseview_lst').removeClass('scrolling');
       $('.caseview_lst').scrollTop(0);
+    }
+    function caseDeploy () {
+      $('.caseview_toggle').parent().addClass('open');
+      $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
+      setTimeout(function(){
+        overflowHeight = $('.caseview_lst').prop('scrollHeight') - 10;
+        scrollTest(maxHeight, overflowHeight);
+      },700)
     }
     // $('.caseview_toggle').on('touchstart',function(event){
     //   startTime = Date.now();
