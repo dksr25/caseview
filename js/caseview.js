@@ -24,22 +24,38 @@ document.head.appendChild(objLink);
       $(this).addClass('on').parent().siblings().find('button').removeClass('on');
     });
     $('.caseview_toggle').click(function(){
+      caseToggle($(this));
+      closeTimer = setTimeout(function(){
+        caseClose();
+      },15000);
+    });
+    $('.caseview_lst').find('button').on('click',function(){
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(function(){
+        caseClose();
+      },15000);
+    });
+    
+    function caseToggle(aa) {
       $('.caseview_lst li').css({"transition":"all 0.5s"});
-      if($(this).parent().hasClass('open')){
-        $(this).parent().removeClass('open');
-        $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"hidden"});
-        $('.caseview_lst').removeClass('scrolling');
-        $('.caseview_lst').scrollTop(0);
+      if(aa.parent().hasClass('open')){
+        caseClose();
       }
       else {
-        $(this).parent().addClass('open');
+        aa.parent().addClass('open');
         $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
         setTimeout(function(){
           overflowHeight = $('.caseview_lst').prop('scrollHeight') - 10;
           scrollTest(maxHeight, overflowHeight);
         },700)
       }
-    });
+    }
+    function caseClose () {
+      $('.caseview_toggle').parent().removeClass('open');
+      $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"hidden"});
+      $('.caseview_lst').removeClass('scrolling');
+      $('.caseview_lst').scrollTop(0);
+    }
     // $('.caseview_toggle').on('touchstart',function(event){
     //   startTime = Date.now();
     //   xStart = event.touches[0].clientX;
