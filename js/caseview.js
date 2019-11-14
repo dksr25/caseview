@@ -43,6 +43,9 @@ document.head.appendChild(objLink);
     });
     $('#caseview').siblings().on('touchend',function(){
       $('.caseview').css({'opacity':'1'});
+      if($('.caseview').css('opacity')==0.2) {
+        $('.caseview').css({'opacity':'1'});
+      }
     });
     
     function caseToggle(aa) {
