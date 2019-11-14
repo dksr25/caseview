@@ -36,12 +36,12 @@ document.head.appendChild(objLink);
       //   caseClose();
       // },15000);
     });
-    $('body:not(#caseview)').on('touchstart',function(){
+    $('#caseview').siblings().on('touchstart',function(){
       setTimeout(function(){
         $('.caseview').css({'opacity':'0.2'});
       },50)
     });
-    $('body:not(#caseview)').on('touchend',function(){
+    $('#caseview').siblings().on('touchend',function(){
       $('.caseview').css({'opacity':'1'});
     });
     
