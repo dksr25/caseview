@@ -38,11 +38,19 @@ document.head.appendChild(objLink);
     });
     $('#caseview').siblings().on('touchstart',function(){
       $('.caseview').css({'opacity':'0.2'});
+      if($('.caseview').hasClass('open')){
+        caseClose();
+        $('.caseview').addClass('ready');
+      }
     });
     $('#caseview').siblings().on('touchend',function(){
       $('.caseview').css({'opacity':'1'});
       if($('.caseview').css('opacity') == '0.2') {
         $('.caseview').css({'opacity':'1'});
+      }
+      if($('.caseview').hasClass('ready')){
+        caseDeploy();;
+        $('.caseview').removeClass('ready');
       }
     });
     
