@@ -14,12 +14,13 @@ document.head.appendChild(objLink);
     maxHeight = window.innerHeight - 220;
     $('#caseview').css({"z-index":settings.zIndex}).addClass(settings.position);
     $('#caseview').append('<ul class="caseview_lst" /><button type="button" class="caseview_toggle" />');
-    for (var i=1;i<=settings.caseLength;i++){
+    for (var i=0;i<settings.case.length;i++){
       var str = '<li><button type="button"><span class="txt"><span /></span></button></li>';
       $('.caseview_lst').append(str);
-      eval("var newCase"+i+"=settings.case"+i+".split('?')");
-      eval("$('.caseview_lst > li').eq("+(i-1)+").find('button').attr('onClick',newCase"+i+"[1]).find('.txt span').text(newCase"+i+"[0])"); 
+      eval("var newCase"+i+"=settings.case["+i+"]");
+      eval("$('.caseview_lst > li').eq("+(i)+").find('button').attr('onClick',newCase"+i+"[1]).find('.txt span').text(newCase"+i+"[0])"); 
     }
+    console.log(settings.case[0]);
     $('.caseview_lst').find('button').on('click',function(){
       $(this).addClass('on').parent().siblings().find('button').removeClass('on');
     });
@@ -235,7 +236,7 @@ document.head.appendChild(objLink);
 }( jQuery ));
 window.onload = function(){
   setTimeout(function(){
-    for (var n=1;n<=settings.caseLength;n++){
+    for (var n=0;n<settings.case.length;n++){
       var textLength = $('.caseview_lst li:nth-child('+n+')').find('.txt span').prop('scrollWidth');
       var over = 132 - textLength;
       var overDu = -(Math.round(over/28)-1);

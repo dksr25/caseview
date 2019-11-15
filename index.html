@@ -113,26 +113,63 @@ h2 {
 <img src="img/test.jpg" alt="" style="width: 100%">
 <div id="caseview" class="caseview"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://dksr25.github.io/caseview/js/caseview.js"></script>
-<!-- <script src="js/caseview.js"></script> -->
+<!-- <script src="https://dksr25.github.io/caseview/js/caseview.js"></script> -->
+<script src="js/caseview.js"></script>
 <script>
 $(document).ready(function(){
   $('#caseview').caseOpen({
     zIndex: "3000",
     position: "bottom-left",
-    caseLength: "12",
-    case1: "bg-bluebg-bluebg-bluebg-bluebg-bluebg-blue?$(body).css({'background-color':'#00f'}).find('h2').text('blue')",
-    case2: "초록배경초록배경초록배경?$(body).css({'background-color':'#0f0'}).find('h2').text('green')",
-    case3: "bg-yellow?$(body).css({'background-color':'#f90'}).find('h2').text('yellow')",
-    case4: "bg-#CCC?$(body).css({'background-color':'#ccc'}).find('h2').text('#CCC')",
-    case5: "bg-red?$(body).css({'background-color':'#f00'}).find('h2').text('red')",
-    case6: "bg-violet?$(body).css({'background-color':'#f0f'}).find('h2').text('violet')",
-    case7: "bg-blue?$(body).css({'background-color':'#00f'}).find('h2').text('blue')",
-    case8: "bg-green?$(body).css({'background-color':'#0f0'}).find('h2').text('green')",
-    case9: "bg-yellow?$(body).css({'background-color':'#f90'}).find('h2').text('yellow')",
-    case10: "bg-#CCC?$(body).css({'background-color':'#ccc'}).find('h2').text('#CCC')",
-    case11: "bg-red?$(body).css({'background-color':'#f00'}).find('h2').text('red')",
-    case12: "bg-violet?$(body).css({'background-color':'#f0f'}).find('h2').text('violet')"
+    case: [
+      [
+        'bg-bluebg-bluebg-bluebg-bluebg-bluebg-blue',
+        "$(body).css({'background-color':'#00f'}).find('h2').text('blue')"
+      ],
+      [
+        "초록배경초록배경초록배경",
+        "$(body).css({'background-color':'#0f0'}).find('h2').text('green')",
+      ],
+      [
+        "bg-yellow",
+        "$(body).css({'background-color':'#f90'}).find('h2').text('yellow')",
+      ],
+      [
+        "bg-#CCC",
+        "$(body).css({'background-color':'#ccc'}).find('h2').text('#CCC')",
+      ],
+      [
+        "bg-red",
+        "$(body).css({'background-color':'#f00'}).find('h2').text('red')",
+      ],
+      [
+        "bg-violet",
+        "$(body).css({'background-color':'#f0f'}).find('h2').text('violet')",
+      ],
+      [
+        "bg-blue",
+        "$(body).css({'background-color':'#00f'}).find('h2').text('blue')",
+      ],
+      [
+        "bg-green",
+        "$(body).css({'background-color':'#0f0'}).find('h2').text('green')",
+      ],
+      [
+        "bg-yellow",
+        "$(body).css({'background-color':'#f90'}).find('h2').text('yellow')",
+      ],
+      [
+        "bg-#CCC",
+        "$(body).css({'background-color':'#ccc'}).find('h2').text('#CCC')",
+      ],
+      [
+        "bg-red",
+        "$(body).css({'background-color':'#f00'}).find('h2').text('red')",
+      ],
+      [
+        "bg-violet",
+        "$(body).css({'background-color':'#f0f'}).find('h2').text('violet')",
+      ],
+    ]
   })
 });  
 </script>
