@@ -43,7 +43,18 @@ document.head.appendChild(objLink);
         $('.caseview').addClass('ready');
       }
     });
+    // 터치대응 
+    // $('#caseview').siblings().on('touchstart',function(){
+    //   opacityTimer = setTimeout(function(){
+    //     $('.caseview').css({'opacity':'0.2'});
+    //     if($('.caseview').hasClass('open')){
+    //       caseClose();
+    //       $('.caseview').addClass('ready');
+    //     }
+    //   },500);
+    // });
     $('#caseview').siblings().on('touchend',function(){
+      // clearTimeout(opacityTimer);
       $('.caseview').css({'opacity':'1'});
       if($('.caseview').css('opacity') == '0.2') {
         $('.caseview').css({'opacity':'1'});
