@@ -1,7 +1,7 @@
 var objLink = document.createElement("link"); 
 objLink.rel = "stylesheet"; 
 objLink.type = "text/css"; 
-objLink.href = "https://dksr25.github.io/caseview/css/style.css";
+objLink.href = "https://dksr25.github.io/caseview/1.0.1/css/style.css";
 // objLink.href = "css/style.css"; 
 document.head.appendChild(objLink);
 
