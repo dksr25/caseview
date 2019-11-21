@@ -27,22 +27,35 @@ $(document).ready(function(){
   $('#caseview').caseOpen({
     zIndex: "3000",
     position: "bottom-right",
-    caseLength: "6",
-    case1: "bg-blue?$(body).css({'background-color':'#00f'}).find('h2').text('blue')",
-    case2: "bg-yellow?$(body).css({'background-color':'#0f0'}).find('h2').text('green')",
-    case3: "bg-green?$(body).css({'background-color':'#f90'}).find('h2').text('yellow')",
-    case4: "bg-#CCC?$(body).css({'background-color':'#ccc'}).find('h2').text('#CCC')",
-    case5: "bg-red?$(body).css({'background-color':'#f00'}).find('h2').text('red')",
-    case6: "bg-violet?$(body).css({'background-color':'#f0f'}).find('h2').text('violet')"
+    case: [
+      [
+        'bg-bluebg-bluebg-bluebg-bluebg-bluebg-blue',
+        "$(body).css({'background-color':'#00f'}).find('h2').text('blue')"
+      ],
+      [
+        "초록배경초록배경초록배경",
+        "$(body).css({'background-color':'#0f0'}).find('h2').text('green')",
+      ],
+      [
+        "bg-yellow",
+        "$(body).css({'background-color':'#f90'}).find('h2').text('yellow')",
+      ],
+      [
+        "bg-#CCC",
+        "$(body).css({'background-color':'#ccc'}).find('h2').text('#CCC')",
+      ],
+      [
+        "bg-red",
+        "$(body).css({'background-color':'#f00'}).find('h2').text('red')",
+      ],
+    ]  
   })
 });  
 </script>
 ~~~
 
-마지막으로 옵션값 설정 입니다. case 갯수만큼 'caseLength' 값을 부여해 주세요.
-케이스 갯수에 맞게 caseN: " 케이스텍스트 '?' 클릭시 동작구문 " 값을 설정해 주세요. 
-
-zIndex 는 #caseview 에 style로 z-index 값을 부여합니다. 상황에 맞게 부여해주세요. 기본값은 1000 입니다. 
+case: [] 로 케이스뷰에 들어갈 케이스 옵션 배열을 열어줍니다. <br>
+그 안에 ['제목','클릭시 동작'] 순으로 옵션의 뱌열을 채워주세요. <br>zIndex 는 #caseview 에 style로 z-index 값을 부여합니다. 상황에 맞게 부여해주세요. 기본값은 1000 입니다. 
 
 position 은 케이스뷰 모듈의 위치를 결정합니다. 'top-right' , 'top-left' , 'bottom-right' , 'bottom-left' 총 4가지 이며 기본값은 'bottom-left' 입니다.
 
