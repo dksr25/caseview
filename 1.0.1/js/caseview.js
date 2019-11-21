@@ -9,9 +9,11 @@ document.head.appendChild(objLink);
   $.fn.caseOpen = function( options ) {
       settings = $.extend({
       zIndex: "1000",
-      position: "bottom-left"
+      position: "bottom-left",
+      maxExpose: "0"
     }, options );
     maxHeight = window.innerHeight - 220;
+    evalMaxExpose(settings.maxExpose,maxHeight);
     $('#caseview').css({"z-index":settings.zIndex}).addClass(settings.position);
     $('#caseview').append('<ul class="caseview_lst" /><button type="button" class="caseview_toggle" />');
     for (var i=0;i<settings.case.length;i++){
@@ -70,6 +72,7 @@ document.head.appendChild(objLink);
     }
     $(window).resize(function(){
       maxHeight = window.innerHeight - 220;
+      evalMaxExpose(settings.maxExpose,maxHeight);
       if($('#caseview').hasClass('open')) {
         $('.caseview_lst').css({"max-height":maxHeight,"overflow-y":"auto"});
         setTimeout(function(){
@@ -80,7 +83,11 @@ document.head.appendChild(objLink);
     });
     $('.caseview_lst').scroll(function(){
       innerST = $(this).scrollTop();
-      if(innerST > 0) {
+      innerSH = $(this).prop('scrollHeight') - 38;
+      outerH = $(this).height();
+      scrollH = innerSH - outerH;
+      // console.log(innerST, scrollH);
+      if(innerST >= scrollH) {
         $('.caseview_lst').removeClass('scrolling');
       }
       else {
@@ -92,7 +99,6 @@ document.head.appendChild(objLink);
         }
       }
     });
-    return this;
     function scrollTest(mH, oH){
       if(mH < oH) {
         $('.caseview_lst').addClass('scrolling');
@@ -101,6 +107,29 @@ document.head.appendChild(objLink);
         $('.caseview_lst').removeClass('scrolling');
       }
     }
+    function evalMaxExpose(maxExpose) {
+      if(maxExpose.indexOf('px') == -1) {
+        if(maxExpose > 0){
+          maxExposeEval = (maxExpose * 28) + ((maxExpose - 1) * 10);
+        }
+        else {
+          maxExposeEval = maxHeight;
+        }
+      }
+      else {
+        maxExpose = Number(maxExpose.replace('px',''));
+        if(maxExpose > 0){
+          maxExposeEval = maxExpose;
+        }
+        else {
+          maxExposeEval = maxHeight;
+        }
+      }
+      if(maxExposeEval < maxHeight) {
+        maxHeight = maxExposeEval;
+      }
+    }
+    return this;
   };
 }( jQuery ));
 window.onload = function(){
