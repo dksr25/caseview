@@ -13,7 +13,7 @@
 ~~~
 <div id="caseview" class="caseview"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://dksr25.github.io/caseview/js/caseview.js"></script>
+<script src="https://dksr25.github.io/caseview/1.0.1/js/caseview.js"></script>
 ~~~
 
 잡아놓은 dom구조 하단에 jquery와 caseview 스크립트를 호출해 주세요
