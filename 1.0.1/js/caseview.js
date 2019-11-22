@@ -140,7 +140,12 @@ window.onload = function(){
       var overDu = -(Math.round(over/28)-1);
       // var overDelay = (2 / overDu) * 100;
       if(textLength > 128) {
-        $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu+'s'});
+        if(overDu <= 3) {
+          $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('short').css({'--overflow':over,'--overduration':overDu+'s'});
+        }
+        else {
+          $('.caseview_lst li:nth-child('+n+')').find('.txt span').addClass('long').css({'--overflow':over,'--overduration':overDu+'s'});
+        }
       }
     }
   },200)

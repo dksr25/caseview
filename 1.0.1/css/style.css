@@ -198,6 +198,24 @@
   animation-timing-function: linear;
 }
 
+.caseview_lst li button > .txt > .short {
+  -moz-animation-duration: var(--overduration);
+  -webkit-animation-duration: var(--overduration);
+  animation-duration: var(--overduration);
+  -moz-animation-name: swing-short;
+  -webkit-animation-name: swing-short;
+  animation-name: swing-short;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -moz-animation-direction: alternate;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  -moz-animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
 .caseview_lst li + li {
   margin-top: 10px;
 }
@@ -294,3 +312,54 @@
  }
 }
 
+@-moz-keyframes swing-short {
+  from {
+    transform: translateX(8px);
+  }
+
+  30% {
+    transform: translateX(8px);
+  }
+
+  70% {
+    transform: translateX(var(--overflow));
+  }
+  
+  to {
+    transform: translateX(var(--overflow));
+ }
+}
+@-webkit-keyframes swing-short {
+  from {
+    -webkit-transform: translateX(8px);
+  }
+
+  30% {
+    -webkit-transform: translateX(8px);
+  }
+
+  70% {
+    -webkit-transform: translateX(var(--overflow));
+  }
+  
+  to {
+    -webkit-transform: translateX(var(--overflow));
+ }
+}
+@keyframes swing-short {
+  from {
+    transform: translateX(8px);
+  }
+
+  30% {
+    transform: translateX(8px);
+  }
+
+  70% {
+    transform: translateX(var(--overflow));
+  }
+  
+  to {
+    transform: translateX(var(--overflow));
+ }
+}
