@@ -30,11 +30,15 @@ document.head.appendChild(objLink);
       $('.caseview').css({'opacity':'1'});
     });
     $('#caseview').siblings().on('touchstart',function(){
-      $('.caseview').css({'opacity':'0.2'});
-      if($('.caseview').hasClass('open')){
-        caseClose();
-        $('.caseview').addClass('ready');
-      }
+      opacityTimer = setTimeout(function(){
+        $('.caseview').css({'opacity':'0.2'});
+      },100);
+      closeTimer = setTimeout(function(){
+        if($('.caseview').hasClass('open')){
+          caseClose();
+          $('.caseview').addClass('ready');
+        }
+      },1300);
     });
     $('#caseview').siblings().on('touchend',function(){
       $('.caseview').css({'opacity':'1'});
