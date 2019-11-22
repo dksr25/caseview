@@ -317,11 +317,11 @@
     transform: translateX(8px);
   }
 
-  30% {
+  35% {
     transform: translateX(8px);
   }
 
-  70% {
+  65% {
     transform: translateX(var(--overflow));
   }
   
@@ -334,11 +334,11 @@
     -webkit-transform: translateX(8px);
   }
 
-  30% {
+  35% {
     -webkit-transform: translateX(8px);
   }
 
-  70% {
+  65% {
     -webkit-transform: translateX(var(--overflow));
   }
   
@@ -351,11 +351,11 @@
     transform: translateX(8px);
   }
 
-  30% {
+  35% {
     transform: translateX(8px);
   }
 
-  70% {
+  65% {
     transform: translateX(var(--overflow));
   }
   
