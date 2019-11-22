@@ -41,6 +41,8 @@ document.head.appendChild(objLink);
       },1300);
     });
     $('#caseview').siblings().on('touchend',function(){
+      clearTimeout(opacityTimer);
+      clearTimeout(closeTimer);
       $('.caseview').css({'opacity':'1'});
       if($('.caseview').css('opacity') == '0.2') {
         $('.caseview').css({'opacity':'1'});
