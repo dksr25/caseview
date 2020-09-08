@@ -11,17 +11,9 @@
   /* overflow-y: auto; */
   pointer-events: none;
   transition: opacity 0.3s;
+  user-select: none;
+  touch-action: manipulation;
 }
-
-/* .caseview:after {
-  display: inline-block;
-  vertical-align: top;
-  height: 100%;
-  padding-bottom: 1px;
-  content: '';
-} */
-
-
 
 .caseview.bottom-left .caseview_toggle{
   bottom: 50px;
